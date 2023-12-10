@@ -32,30 +32,34 @@ sudo make install
 ```
 ParlayLib benchmark can be run with or without jemalloc:
 ```
+# with jemalloc
 LD_PRELOAD=/usr/local/lib/libjemalloc.so ./benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results_with_jemalloc.txt
+# without jemalloc
 ./benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results.txt
 ```
-To compile your own C++ source file on Linux (WSL on Windows), where ParlayLib has been cloned into C:\repos on Windows:
+To compile example C++ source file on Linux (WSL on Windows), where ParlayLib has been cloned into "C:\repos: directory on Windows:
 ```
 # in WSL go to the directory where this repository has been cloned
 cd parlaylib_proj
 g++ -I /mnt/c/repos/parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib
 ```
+If parlaylib was cloned into a different directory, then change "-I" command line option to point to that directory.
+
 To run the executable
 ```
 ./parlaylib_proj 100000000
 ```
 
 ## Getting Started on Windows
-Install Visual Studio 2022, either free or paid version.
-[Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel's implementation of C++ compiler for Visual Studio 2022.
+Install Visual Studio 2022 - either free or paid version.
+[Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel C++ compiler for Visual Studio 2022.
 Both compilers (Microsoft or Intel) can be used to build this project. To switch between compilers, select "Project/Intel-Compiler" from Visual Studio 2022 menu.
 
 Visual Studio 2022 solution/project (parlaylib_proj.sln) is provided to build an executable using either Microsoft's compiler or Intel compiler. Right-click on `parlaylib_proh.sln` file in Explorer and select "Open with Visual Studion 2022".
 Once Visual Studio 2022 comes up, select "Built/Rebuild-Solution" to build the executable.
 
-To run the built executable, open "Command Prompt" and navigate to the directory Visual Studio 2022 shown in the Output window where the executable was placed.
-Copy `libmmd.dll` from Intel compiler (C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin) to the directory the executable is in (parlaylib_getting_started\parlaylib_proj\x64\Release).
+If Intel compiler was used, then copy `libmmd.dll` from Intel compiler (C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin) to the directory the executable is in (parlaylib_getting_started\parlaylib_proj\x64\Release).
+To run the built executable, open "Command Prompt" and navigate to the directory Visual Studio 2022 shown in the Output window where the executable was placed - path should end with x64\Release.
 ```
 parlaylib_proj 100000000
 ```
