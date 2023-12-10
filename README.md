@@ -8,6 +8,9 @@ and running are provided.
 ## Getting Started on Linux
 To install g++ which supports C++17:
 ```
+sudo apt update
+sudo apt upgrade
+# reboot the system
 sudo apt install build-essential
 ```
 To obtain ParlayLib and set it up:
@@ -37,11 +40,12 @@ LD_PRELOAD=/usr/local/lib/libjemalloc.so ./benchmark/bench_standard --benchmark_
 # without jemalloc
 ./benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results.txt
 ```
-To compile example C++ source file on Linux (WSL on Windows), where ParlayLib has been cloned into "C:\repos: directory on Windows:
+To compile the example C++ source file on Linux (or WSL on Windows):
 ```
-# in WSL go to the directory where this repository has been cloned
-cd parlaylib_proj
-g++ -I /mnt/c/repos/parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib
+# On Linux where parlaylib and parlaylib_getting_started repos are at the same directory level
+git clone https://github.com/DragonSpit/parlaylib_getting_started.git
+cd parlaylib_getting_started/parlay_proj
+g++ -I ../../parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib_proj
 ```
 If parlaylib was cloned into a different directory, then change "-I" command line option to point to that directory.
 
@@ -54,6 +58,7 @@ To run the executable
 Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/whatsnew/) - either free (Community) or paid version (Professional or Enterprise).
 [Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel C++ compiler for Visual Studio 2022.
 Both compilers (Microsoft or Intel) can be used to build this project. To switch between compilers, select "Project/Intel-Compiler" from Visual Studio 2022 menu.
+Install [Git for Windows](https://github.com/git-guides/install-git).
 
 To obtain ParlayLib and set it up, open a "Command Prompt" window:
 ```
