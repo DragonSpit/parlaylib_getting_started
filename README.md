@@ -10,7 +10,7 @@ To install g++ which supports C++17:
 ```
 sudo apt install build-essential
 ```
-To obtain ParlayLib and set it up.
+To obtain ParlayLib and set it up:
 ```
 # go to the directory where parlaylib will live
 git clone https://github.com/cmuparlay/parlaylib.git
@@ -51,11 +51,17 @@ To run the executable
 ```
 
 ## Getting Started on Windows
-Install Visual Studio 2022 - either free or paid version.
+Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/whatsnew/) - either free (Community) or paid version (Professional or Enterprise).
 [Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel C++ compiler for Visual Studio 2022.
 Both compilers (Microsoft or Intel) can be used to build this project. To switch between compilers, select "Project/Intel-Compiler" from Visual Studio 2022 menu.
 
-Visual Studio 2022 solution/project (parlaylib_proj.sln) is provided to build an executable using either Microsoft's compiler or Intel compiler. Right-click on `parlaylib_proh.sln` file in Explorer and select "Open with Visual Studion 2022".
+To obtain ParlayLib and set it up, open a "Command Prompt" window:
+```
+# go to the directory where parlaylib will live (e.g. c:\repos)
+git clone https://github.com/cmuparlay/parlaylib.git
+```
+
+In "parlaylib_proj" directory, Visual Studio 2022 solution/project (parlaylib_proj.sln) is provided to build an executable using either Microsoft's compiler or Intel compiler. Right-click on `parlaylib_proh.sln` file in Explorer and select "Open with Visual Studion 2022".
 Once Visual Studio 2022 comes up, select "Built/Rebuild-Solution" to build the executable.
 
 If Intel compiler was used, then copy `libmmd.dll` from Intel compiler (C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin) to the directory the executable is in (parlaylib_getting_started\parlaylib_proj\x64\Release).
