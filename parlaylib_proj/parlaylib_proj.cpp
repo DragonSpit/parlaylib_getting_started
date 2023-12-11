@@ -48,15 +48,15 @@ static void benchmark_integer_sort(size_t n)
         return r.ith_rand(i); });
 
     size_t bits = sizeof(unsigned) * 8;
-    auto identity = [](unsigned a) {return a; };                // create a lambda function for array index, which returns the array element indexed without any modifications to it
+    auto identity = [](unsigned a) { return a; };                // create a lambda function for array index, which returns the array element indexed without any modifications to it
 
     parlay::internal::timer t("Time");
     parlay::sequence<unsigned> input_data;
     parlay::sequence<unsigned> result;
     for (int i = 0; i < 5; i++) {
-        result = S;
+        input_data = S;
         t.start();
-        result = parlay::internal::integer_sort(parlay::make_slice(S), identity, bits);
+        result = parlay::internal::integer_sort(parlay::make_slice(input_data), identity, bits);
         t.next("integer_sort");
     }
 
