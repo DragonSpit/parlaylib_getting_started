@@ -11,6 +11,7 @@
 #include <parlay/sequence.h>
 
 #include "mergesort.h"
+#include "samplesort.h"
 
 static void benchmark_merge_sort(size_t n)
 {
@@ -57,10 +58,12 @@ static void benchmark_integer_sort(size_t n)
         input_data = S;
         t.start();
         result = parlay::internal::integer_sort(parlay::make_slice(input_data), identity, bits);
+        //sample_sort(input_data);
         t.next("integer_sort");
     }
 
     auto first_ten = result.head(10);
+    //auto first_ten = input_data.head(10);     // for sample_sort
     std::cout << "first 10 elements: " << parlay::to_chars(first_ten) << std::endl;
 }
 
@@ -74,7 +77,7 @@ int main(int argc, char* argv[])
         try { n = std::stoll(argv[1]); }
         catch (...) { std::cout << usage << std::endl; return 1; }
 
-        benchmark_merge_sort(  n);
+        //benchmark_merge_sort(  n);
         benchmark_integer_sort(n);
     }
 }
