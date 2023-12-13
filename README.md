@@ -3,7 +3,7 @@
 
 This repository helps you get started to integrate ParlayLib into a C++ executable on Linux and Windows. A single example source file is provided, which builds
 from command line on Linux. For Windows, a Visual Studion 2022 project is provided, which compiles the same source file. Steps toward getting executables building
-and running are provided.
+and running are provided. Associated [blog](https://duvanenko.tech.blog/2023/12/10/parlaylib-parallel-algorithms-library/) provides several benchmarks.
 
 ## Getting Started on Linux
 To install g++ which supports C++17:
@@ -28,7 +28,7 @@ ParlayLib recommends installing a high performance memory allocator: jemalloc
 # go to the directory where jemalloc will live
 git clone https://github.com/jemalloc/jemalloc.git
 sudo apt-get install autoconf
-./configure
+cd jemalloc
 ./autogen.sh
 make
 sudo make install
@@ -44,7 +44,7 @@ To compile the example C++ source file on Linux (or WSL on Windows):
 ```
 # On Linux where parlaylib and parlaylib_getting_started repos are at the same directory level
 git clone https://github.com/DragonSpit/parlaylib_getting_started.git
-cd parlaylib_getting_started/parlay_proj
+cd parlaylib_getting_started/parlaylib_proj
 g++ -I ../../parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib_proj
 ```
 If parlaylib was cloned into a different directory, then change "-I" command line option to point to that directory.
