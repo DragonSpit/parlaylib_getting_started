@@ -5,7 +5,7 @@ This repository helps you get started to integrate ParlayLib into a C++ executab
 from command line on Linux. For Windows, a Visual Studion 2022 project is provided, which compiles the same source file. Steps toward getting executables building
 and running are provided. Associated [blog](https://duvanenko.tech.blog/2023/12/10/parlaylib-parallel-algorithms-library/) provides several benchmarks.
 
-## Getting Started on Linux
+## Getting Started on Linux (Ubuntu 22.04 LTS)
 To install g++ which supports C++17:
 ```
 sudo apt update
