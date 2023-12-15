@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
         try { n = std::stoll(argv[1]); }
         catch (...) { std::cout << usage << std::endl; return 1; }
 
-        //benchmark_merge_sort(  n);
+        benchmark_merge_sort(  n);
         benchmark_integer_sort(n);
     }
 }
