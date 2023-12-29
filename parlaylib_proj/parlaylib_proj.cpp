@@ -49,7 +49,6 @@ static void benchmark_merge_sort(size_t n)
 
 static void benchmark_integer_sort(size_t n)
 {
-    parlay::random_generator gen;
     parlay::random r(0);
 
     size_t bits = sizeof(unsigned) * 8;

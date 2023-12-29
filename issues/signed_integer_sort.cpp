@@ -1,6 +1,5 @@
 static void benchmark_signed_integer_sort(size_t n)
 {
-    parlay::random_generator gen;
     std::uniform_int_distribution<int> dis(INT32_MIN, INT32_MAX - 1);       // generates random values in the range of 0 to N-1, where N is the size of the array
 
     parlay::random r(0);
