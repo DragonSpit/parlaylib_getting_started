@@ -16,17 +16,24 @@
 static void benchmark_merge_sort(size_t n)
 {
     parlay::random_generator gen;
-    std::uniform_int_distribution<unsigned> dis(0, n - 1);       // generates random values in the range of 0 to N-1, where N is the size of the array
+    std::uniform_int_distribution<int> dis(0, INT32_MAX - 1);       // generates random values in the range of 0 to N-1, where N is the size of the array
     parlay::random r(0);
 
     // generate random unsigned values
-    auto data = parlay::tabulate(n, [&](unsigned i) {
+    auto data = parlay::tabulate(n, [&](int i) {
         auto r = gen[i];
         return dis(r); });
+    auto data2 = parlay::tabulate(n, [&](size_t i) -> int {
+        auto r = gen[i];
+        return dis(r); });
+    for (size_t i = 0; i < data.size(); i++) {                       // randomly negate array values
+        if (data2[i] > (INT32_MAX / 2))
+            data[i] = -data[i];
+    }
 
     parlay::internal::timer t("Time");
-    parlay::sequence<unsigned> input_data;
-    parlay::sequence<unsigned> result;
+    parlay::sequence<int> input_data;
+    parlay::sequence<int> result;
     for (int i = 0; i < 5; i++) {
         input_data = data;
         t.start();
@@ -35,36 +42,47 @@ static void benchmark_merge_sort(size_t n)
     }
 
     auto first_ten = input_data.head(10);
-    std::cout << "first 10 elements: " << parlay::to_chars(first_ten) << std::endl;
+    auto last_ten  = input_data.tail(10);
+    std::cout << "merge_sort: first 10 elements: " << parlay::to_chars(first_ten) << std::endl;
+    std::cout << "merge_sort: last  10 elements: " << parlay::to_chars(last_ten)  << std::endl;
 }
 
 static void benchmark_integer_sort(size_t n)
 {
     parlay::random_generator gen;
-    std::uniform_int_distribution<unsigned> dis(0, n - 1);       // generates random values in the range of 0 to N-1, where N is the size of the array
-
     parlay::random r(0);
-    auto S = parlay::tabulate(n, [&](size_t i) -> unsigned {
-        // return 3; });                                        // to set all elements of input array to a constant value
-        return r.ith_rand(i); });
 
     size_t bits = sizeof(unsigned) * 8;
     auto identity = [](unsigned a) { return a; };                // create a lambda function for array index, which returns the array element indexed without any modifications to it
 
     parlay::internal::timer t("Time");
     parlay::sequence<unsigned> input_data;
+    parlay::sequence<unsigned> input_data_ms;
     parlay::sequence<unsigned> result;
     for (int i = 0; i < 5; i++) {
+        auto S = parlay::tabulate(n, [&](size_t i) -> unsigned {
+            // return 3; });                                        // to set all elements of input array to a constant value
+            return r.ith_rand(i); });
         input_data = S;
         t.start();
         result = parlay::internal::integer_sort(parlay::make_slice(input_data), identity, bits);
         //sample_sort(input_data);
         t.next("integer_sort");
+
+        // Compare result to merge sort
+        input_data_ms = S;
+        merge_sort(input_data_ms);
+        if (input_data_ms != result)
+        {
+            std::cout << "Integer Sort and Merge Sort results are not equal";
+            exit(1);
+        }
     }
 
     auto first_ten = result.head(10);
-    //auto first_ten = input_data.head(10);     // for sample_sort
-    std::cout << "first 10 elements: " << parlay::to_chars(first_ten) << std::endl;
+    auto last_ten  = result.tail(10);
+    std::cout << "integer_sort: first 10 elements: " << parlay::to_chars(first_ten) << std::endl;
+    std::cout << "integer_sort: last  10 elements: " << parlay::to_chars(last_ten)  << std::endl;
 }
 
 // User provides the size of the random input array as the command line argument
