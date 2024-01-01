@@ -16,20 +16,16 @@
 static void benchmark_merge_sort(size_t n)
 {
     parlay::random_generator gen;
-    std::uniform_int_distribution<int> dis(0, INT32_MAX - 1);       // generates random values in the range of 0 to N-1, where N is the size of the array
+    std::uniform_int_distribution<int> dis(INT32_MIN, INT32_MAX);       // generates random values in the full range of signed integers
     parlay::random r(0);
 
-    // generate random unsigned values
+    // generate random signed integer values
     auto data = parlay::tabulate(n, [&](int i) {
         auto r = gen[i];
         return dis(r); });
     auto data2 = parlay::tabulate(n, [&](size_t i) -> int {
         auto r = gen[i];
         return dis(r); });
-    for (size_t i = 0; i < data.size(); i++) {                       // randomly negate array values
-        if (data2[i] > (INT32_MAX / 2))
-            data[i] = -data[i];
-    }
 
     parlay::internal::timer t("Time");
     parlay::sequence<int> input_data;
