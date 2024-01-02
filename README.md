@@ -79,6 +79,6 @@ parlaylib_proj 100000000
 Assuming that on Windows parlaylib repository was cloned to "c:\repos\parlaylib", and parlaylib_getting_started repository was cloned into "c:\repos\parlaylib_getting_started",
 and g++ compiler was installed using Linux installation instruction above:
 ```
-g++ -I /mnt/c/repos/parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib
+g++ -I /mnt/c/repos/parlaylib/include /mnt/c/repos/parlaylib_getting_started/parlaylib_proj/parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib
 parlaylib_proj 100000000
 ```
