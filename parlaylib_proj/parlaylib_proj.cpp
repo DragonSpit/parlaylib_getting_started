@@ -22,9 +22,8 @@ static void benchmark_merge_sort(size_t n)
     // generate random signed integer values
     auto data = parlay::tabulate(n, [&](int i) {
         auto r = gen[i];
-        return dis(r); });
-    auto data2 = parlay::tabulate(n, [&](size_t i) -> int {
-        auto r = gen[i];
+        //return 4; });           // to set all elements of input array to a constant value
+        //return i; });           // incrementing (pre-sorted) pattern
         return dis(r); });
 
     parlay::internal::timer t("Time");
@@ -56,7 +55,8 @@ static void benchmark_integer_sort(size_t n)
     parlay::sequence<unsigned> result;
     for (int i = 0; i < 5; i++) {
         auto S = parlay::tabulate(n, [&](size_t i) -> unsigned {
-            // return 3; });                                        // to set all elements of input array to a constant value
+            //return 3; });                                        // to set all elements of input array to a constant value
+            //return (unsigned)i; });                              // incrementing (pre-sorted) pattern
             return r.ith_rand(i); });
         input_data = S;
         t.start();
