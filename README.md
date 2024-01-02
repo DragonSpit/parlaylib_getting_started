@@ -56,7 +56,7 @@ To run the executable
 
 ## Getting Started on Windows
 Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/whatsnew/) - either free (Community) or paid version (Professional or Enterprise).
-[Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel C++ compiler for Visual Studio 2022.
+[Intel OneAPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html) can be installed to obtain Intel C++ compiler (free) for Visual Studio 2022.
 Both compilers (Microsoft or Intel) can be used to build this project. To switch between compilers, select "Project/Intel-Compiler" from Visual Studio 2022 menu.
 Install [Git for Windows](https://github.com/git-guides/install-git).
 
@@ -72,5 +72,13 @@ Once Visual Studio 2022 comes up, select "Built/Rebuild-Solution" to build the e
 If Intel compiler was used, then copy `libmmd.dll` from Intel compiler (C:\Program Files (x86)\Intel\oneAPI\compiler\2024.0\bin) to the directory the executable is in (parlaylib_getting_started\parlaylib_proj\x64\Release).
 To run the built executable, open "Command Prompt" and navigate to the directory Visual Studio 2022 shown in the Output window where the executable was placed - path should end with x64\Release.
 ```
+parlaylib_proj 100000000
+```
+
+### Getting Started on Windows WSL (Ubuntu)
+Assuming that on Windows parlaylib repository was cloned to "c:\repos\parlaylib", and parlaylib_getting_started repository was cloned into "c:\repos\parlaylib_getting_started",
+and g++ compiler was installed using Linux installation instruction above:
+```
+g++ -I /mnt/c/repos/parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib
 parlaylib_proj 100000000
 ```
