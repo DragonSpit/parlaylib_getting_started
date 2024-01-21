@@ -6,11 +6,14 @@ from command line on Linux. For Windows, a Visual Studion 2022 project is provid
 and running are provided. Associated [blog](https://duvanenko.tech.blog/2023/12/10/parlaylib-parallel-algorithms-library/) provides several benchmarks.
 
 ## Getting Started on Linux (Ubuntu 22.04 LTS)
-To install g++ which supports C++17:
+To install g++ version which supports C++17:
 ```
 sudo apt update
 sudo apt upgrade
 # reboot the system
+sudo reboot now
+# wait 1 minute or so, and then login again
+
 sudo apt install build-essential
 ```
 To obtain ParlayLib and set it up:
@@ -22,6 +25,7 @@ mkdir -p build/Release && cd build/Release
 sudo apt  install cmake
 cmake -DCMAKE_BUILD_TYPE=Release -DPARLAY_BENCHMARK=On ../..
 cmake --build .
+cd ../../..
 ```
 ParlayLib recommends installing a high performance memory allocator: jemalloc
 ```
@@ -32,15 +36,9 @@ cd jemalloc
 ./autogen.sh
 make
 sudo make install
+cd ..
 ```
-ParlayLib benchmark can be run with or without jemalloc:
-```
-# with jemalloc
-LD_PRELOAD=/usr/local/lib/libjemalloc.so ./benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results_with_jemalloc.txt
-# without jemalloc
-./benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results.txt
-```
-To compile the example C++ source file on Linux (or WSL on Windows):
+To obtain and compile the getting started example source file on Linux (or WSL on Windows):
 ```
 # On Linux where parlaylib and parlaylib_getting_started repos are at the same directory level
 git clone https://github.com/DragonSpit/parlaylib_getting_started.git
@@ -53,6 +51,18 @@ To run the executable
 ```
 ./parlaylib_proj 100000000
 ```
+
+ParlayLib benchmark can be run with or without jemalloc:
+```
+# Navigate to parlaylib directory
+cd parlaylib
+
+# with jemalloc
+LD_PRELOAD=/usr/local/lib/libjemalloc.so ./build/Release/benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results_with_jemalloc.txt
+# without jemalloc
+./build/Release/benchmark/bench_standard --benchmark_repetitions=20 > benchmark_results.txt
+```
+
 
 ## Getting Started on Windows
 Install [Visual Studio 2022](https://visualstudio.microsoft.com/vs/whatsnew/) - either free (Community) or paid version (Professional or Enterprise).
