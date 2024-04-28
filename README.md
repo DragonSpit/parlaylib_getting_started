@@ -23,6 +23,7 @@ git clone https://github.com/cmuparlay/parlaylib.git
 cd parlaylib/
 mkdir -p build/Release && cd build/Release
 sudo apt  install cmake
+# if the above fails, then follow instructions under A-1 through A-6 to install cmake (https://askubuntu.com/questions/355565/how-do-i-install-the-latest-version-of-cmake-from-the-command-line)
 cmake -DCMAKE_BUILD_TYPE=Release -DPARLAY_BENCHMARK=On ../..
 cmake --build .
 cd ../../..
@@ -43,7 +44,7 @@ To obtain and compile the getting started example source file on Linux (or WSL o
 # On Linux where parlaylib and parlaylib_getting_started repos are at the same directory level
 git clone https://github.com/DragonSpit/parlaylib_getting_started.git
 cd parlaylib_getting_started/parlaylib_proj
-g++ -I ../../parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib_proj
+g++ -I ../../parlaylib/include parlaylib_proj.cpp -std=c++20 -O3 -o parlaylib_exe
 ```
 If parlaylib was cloned into a different directory, then change "-I" command line option to point to that directory.
 
